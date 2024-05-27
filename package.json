@@ -1,0 +1,25 @@
+{
+  "name": "blogs-technobyte",
+  "version": "1.0.0",
+  "description": "Offical repo of Blogs, made by Technobyte.",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "concurrently \"cd server && npm install\" \"cd client && npm install\"",
+    "dev:all": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "build": "cd client && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technobyte-nitkkr/Blogs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/technobyte-nitkkr/Blogs/issues"
+  },
+  "homepage": "https://github.com/technobyte-nitkkr/Blogs#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
