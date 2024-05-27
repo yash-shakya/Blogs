@@ -1,0 +1,3 @@
+# If someone wrongly installed dependencies in the root
+
+node_modules
