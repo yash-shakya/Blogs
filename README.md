@@ -33,11 +33,15 @@ cp .env.example .env
 
 And add all required environment variables in the `.env` file
 
-> ![Tip]
+> [!Tip]
 > You can get the `MONGODB_URI` from [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+> 
 > OR
+>
 > If you have MongoDB installed locally, you can set the `MONGODB_URI` to `mongodb://localhost:27017/<database-name>`
+>
 > OR
+>
 > Run `docker compose up -d` to start a MongoDB container and set the `MONGODB_URI` to `mongodb://localhost:27017/<database-name>
 
 4. Run the project
