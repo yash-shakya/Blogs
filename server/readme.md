@@ -2,6 +2,14 @@
 
 Template data stored in dB after auth:
 
+### API SUMMARY:
+
+- GET `/`: check if server is running
+- GET `/auth/google`: authenticate user with google
+- GET `/auth/google/callback`: callback after google auth
+- GET `/auth/logout`: logout user
+- GET `/auth/error`: something failed
+
 ```json
 {
   "_id": {
