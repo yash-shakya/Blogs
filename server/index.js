@@ -1,7 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
+import session from "express-session";
+import passport from "passport";
 import cors from "cors";
 import dotenv from "dotenv";
+import routes from "./src/routes.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -15,6 +18,10 @@ const corsOptions = {
 
 // Initialize Express app
 const app = express();
+app.use(session({ secret: 'YOUR_SESSION_SECRET', resave: false, saveUninitialized: false }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 const PORT = process.env.PORT || 3000;
 const DB = process.env.MONGODB_HOST;
 
@@ -22,9 +29,7 @@ app.use(cors(corsOptions));
 app.use(express.json()); // Parse JSON bodies for this app
 
 // Basic route
-app.get("/", (req, res) => {
-    res.send("Hello from server");
-});
+
 
 // Connect to MongoDB
 const connectDB = async () => {
@@ -47,6 +52,8 @@ const startServer = async () => {
     app.listen(PORT, "0.0.0.0", () => {
         console.log(`Server running on port ${PORT}`);
     });
+
+    routes(app);
 };
 
 startServer();
