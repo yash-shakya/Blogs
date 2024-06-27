@@ -4,9 +4,15 @@ import session from "express-session";
 import passport from "passport";
 import cors from "cors";
 import dotenv from "dotenv";
-import routes from "./src/routes.js";
+import routes from "./src/router/routes.js";
+
+// Initialize Express app
+const app = express();
 
 // Load environment variables from .env file
+const PORT = process.env.PORT || 3000;
+const DB = process.env.MONGODB_HOST;
+
 dotenv.config();
 
 // CORS Config
@@ -16,14 +22,13 @@ const corsOptions = {
     optionsSuccessStatus: 204 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
-// Initialize Express app
-const app = express();
+
+
 app.use(session({ secret: 'YOUR_SESSION_SECRET', resave: false, saveUninitialized: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-const PORT = process.env.PORT || 3000;
-const DB = process.env.MONGODB_HOST;
+
 
 app.use(cors(corsOptions));
 app.use(express.json()); // Parse JSON bodies for this app

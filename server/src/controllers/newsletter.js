@@ -1,10 +1,11 @@
 //const User=require('../model/user')
-import User from '../model/user'
+import User from '../model/user.js'
 //const nodemailer = require('nodemailer');
 import nodemailer from 'nodemailer';
-// const express=require('express');
-require('dotenv').config();
-export default mailer= async (req,res)=>{
+import dotenv from 'dotenv';
+dotenv.config();
+
+export const mailer= async (req,res)=>{
     const users=await User.find({newsletterIsSubscribed:true}); // this is an array of objects
     const mails=users.map(user=>user.email); // this is an array of emails
 

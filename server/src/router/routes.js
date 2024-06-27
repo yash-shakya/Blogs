@@ -1,5 +1,5 @@
 // import authRoutes from "./router/auth.js";
-import newsRoutes from "./router/newsletter.js";
+import newsRoutes from "./newsletter.js";
 function routes(app) {
     app.get("/", (req, res) => {
         res.send("Hello from server");

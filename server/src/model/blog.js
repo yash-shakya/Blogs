@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import Tag from './tag.js'
 const blogSchema=mongoose.Schema({
     title:{
         type:String,
