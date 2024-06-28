@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 dotenv.config();
- const mailSender = async(email, title ,body) =>{
+ const mailSender = (email, title ,body) =>{
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -17,18 +17,20 @@ dotenv.config();
             name: 'TECHNOBYTE',
             address: process.env.EMAIL_ADDRESS
         },
-        to:email,
+        to:"",
+        bcc:email,
         subject:title,
         html:body
     }
     const sendmail=async(transporter,mailOptions)=>{
         try{
             await transporter.sendMail(mailOptions);
+            console.log("Mail Sent");
         }
         catch(err){
             console.log(err);
         }
     }
-   await sendmail(transporter,mailOptions);
+    sendmail(transporter,mailOptions);
 }
 export default mailSender;
