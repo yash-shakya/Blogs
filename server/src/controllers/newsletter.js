@@ -15,8 +15,8 @@ export const mailer= async (req,res)=>{
         port: 587,
       secure: false, // Use `true` for port 465, `false` for all other ports
       auth: {
-        user: String(process.env.USER),
-        pass: String(process.env.PASS),
+          emailAddress: String(process.env.EMAIL_ADDRESS),
+          passkey: String(process.env.PASSKEY),
       },
     });
     const mailOptions = {
