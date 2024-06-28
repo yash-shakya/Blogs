@@ -9,11 +9,6 @@ export const mailer= async (req,res)=>{
 
     const subject=req.body.subject;
     const HTML=req.body.html_body;
-
-    mails.forEach(async(mail)=>{
-      await mailSender(mail,subject,HTML);
-    })
-
-
+    mailSender(mails,subject,HTML);
     res.json({message:'Mail sent successfully'});
 }
