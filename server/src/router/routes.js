@@ -1,4 +1,5 @@
 // import authRoutes from "./router/auth.js";
+import { reviewBlog } from "../controllers/blog-review.js";
 import newsRoutes from "./newsletter.js";
 function routes(app) {
     app.get("/", (req, res) => {
@@ -7,6 +8,7 @@ function routes(app) {
 
     // app.use('/auth', authRoutes);
     app.use("/newsletter", newsRoutes);
+    app.post("/admin/blog/review/:id", reviewBlog);
 }
 
 export default routes;
