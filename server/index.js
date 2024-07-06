@@ -39,7 +39,7 @@ app.use(express.json()); // Parse JSON bodies for this app
 // Connect to MongoDB
 const connectDB = async () => {
     try {
-        await mongoose.connect(DB, {
+        await mongoose.connect("mongodb://localhost:27017/techno-blogs", {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
