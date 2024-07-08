@@ -5,9 +5,12 @@ import passport from "passport";
 import cors from "cors";
 import dotenv from "dotenv";
 import routes from "./src/router/routes.js";
+import Blog from "./src/model/blog.js";
 
 // Initialize Express app
 const app = express();
+
+const blog = new Blog();
 
 // Load environment variables from .env file
 const PORT = process.env.PORT || 3000;
