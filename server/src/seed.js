@@ -24,7 +24,6 @@ const seedData = [{
 
 export const seed = async () => {
   try {
-    await Blog.deleteMany({}); // Clear the database
     await Blog.insertMany(seedData); // Insert the seed data
     console.log('Seed data inserted successfully!');
   } catch (error) {
