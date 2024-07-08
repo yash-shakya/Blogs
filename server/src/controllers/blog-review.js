@@ -1,29 +1,15 @@
 import Blog from '../model/blog.js';
+import seed from '../seed.js';
 
-// For testing
-export const createBlog = async (req, res) => {
-    try {
-        const blog = new Blog({
-            title: 'My New Blog',
-            content: 'This is my new blog content',
-            image: 'https://example.com/image.jpg',
-            review: 'pending',
-            reviewMessage: '',
-            tags: [],
-            comments: []
-        });
-        await blog.save();
+seed().then(() => {
+    console.log('Seed data loaded.');
+});
 
-        res.status(201).json({ message: 'Blog created successfully', blog });
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error', error });
-    }
-}
 
 export const reviewBlog = async (req, res) => {
     const blogId = req.params.id;
     const { reviewStatus, reviewMessage } = req.body;
-    
+
     try {
         const blog = await Blog.findById(blogId);
         if (!blog) {
@@ -44,14 +30,19 @@ export const reviewBlog = async (req, res) => {
         switch (reviewStatus) {
             case 'pending':
                 blog.review = 'pending';
+                blog.reviewMessage = '';
                 message = 'Blog review pending.';
                 break;
             case 'approved':
                 blog.review = 'approved';
+                blog.reviewMessage = '';
                 //function call for publishing the blog
                 message = 'Blog approved and published for everyone.';
                 break;
             case 'update':
+                if (!reviewMessage || reviewMessage.trim() === '') {
+                    return res.status(400).json({ message: 'Review message is required for update' });
+                }
                 blog.review = 'update';
                 blog.reviewMessage = reviewMessage;
                 message = `Blog requires updates. Please review the comments: ${blog.reviewMessage}`;
@@ -62,7 +53,7 @@ export const reviewBlog = async (req, res) => {
 
         await blog.save();
 
-        // For testing
+        //for updating the blog
         const updatedBlog = await Blog.findByIdAndUpdate(blogId, {
             review: blog.review,
             isPublished: blog.isPublished,
