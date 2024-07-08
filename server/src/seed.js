@@ -1,5 +1,4 @@
 import Blog from '../src/model/blog.js'
-//seedData 
 
 const seedData = [{
   _id: '6687a832f73838cbf41ce4b2',
