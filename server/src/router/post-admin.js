@@ -1,4 +1,3 @@
-import User from "../model/user";
 import Blog from "../model/blog";
 
 export default async function postAdmin(req, res) {
@@ -11,13 +10,10 @@ export default async function postAdmin(req, res) {
         const updated_review = await Blog.find({ review: "update" });
         // Pending Reviews (where review: pending)
         const review = await Blog.find({ review: "pending" });
-        // All Users
-        const all_users = await User.find();
 
         return res.status(200).json({
             success: true,
             message: "Admin data fetched successfully",
-            all_users,
             published_blogs,
             updated_review,
             review,

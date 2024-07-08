@@ -1,20 +1,19 @@
 //to do
 //req.body
 import User from "../model/user";
-import cookieParser from "cookie-parser";
 
 export function adminMiddleware(req, res, next) {
-    cookieParser();
-    const { userId, email } = req.cookies;
+    const token = req.headers.cookie.split('token=')[1].split(';')[0];
+    const { id, email } = token;
 
-    if (!userId || !email) {
+    if (!id || !email) {
         return res.json({
             success: false,
-            message: "Missing userId or email in cookie",
+            message: "Missing id or email in cookie",
         });
     }
 
-    const user = User.findOne({ _id: userId, email });
+    const user = User.findOne({ _id: id, email });
 
     if (!user) {
         return res.json({
