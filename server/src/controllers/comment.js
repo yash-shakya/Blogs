@@ -8,8 +8,8 @@ export async function CreateComment(req,res){
         user:id
         })
     }catch (error) {
-        res.json({message:"Comment creation failed", err:error})
+        return res.json({message:"Comment creation failed", err:error})
     }
-    res.json({message:"Comment created successfully"});
+    return res.json({message:"Comment created successfully"});
 }
 
